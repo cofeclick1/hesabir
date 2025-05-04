@@ -1,0 +1,41 @@
+.switch-cat-type {
+    display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;
+}
+.switch-cat-type label {
+    font-weight: bold; font-size: 1.05rem;
+    padding: .5rem 1.3rem; border-radius: 30px;
+    background: #f3f7fa; cursor: pointer; transition: background .16s;
+    border: 2px solid #cbd5e1;
+    display: flex; align-items: center; gap: .5rem;
+}
+.switch-cat-type input[type="radio"]:checked + span {
+    color: #1565c0;
+    font-weight: bold;
+    background: #e3f2fd;
+    border-color: #1565c0;
+}
+.switch-cat-type input[type="radio"] { display: none; }
+.cat-section { display: none; }
+.cat-section.active { display: block; }
+.form-switch { display: flex; align-items: center; gap: .5rem; }
+.form-switch input[type="checkbox"] { width: 1.4em; height: 1.4em; }
+.code-switch {display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+.code-switch label {font-size:.98rem;}
+.manage-btn {margin-right: 8px; font-size: 14px;}
+.manage-btn i {margin-left: 4px;}
+/* --- Popup Modal --- */
+.modal-popup-bg {
+    background: rgba(0,0,0,0.33); position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+}
+.modal-popup {
+    background: #fff; border-radius: 16px; padding: 1.5rem; min-width: 340px; box-shadow: 0 8px 24px rgba(30,41,59,.13);
+    position: relative; max-width: 95vw;
+}
+.modal-popup .close-btn {
+    position: absolute; top: 10px; left: 20px; background: none; border: none; font-size: 1.6rem; color: #999;
+}
+.table-responsive {max-height: 260px;overflow:auto;}
+.modal-popup-table th, .modal-popup-table td {padding: 7px 10px; text-align: right;}
+.modal-popup-table th {background: #f8fafc;}
+.modal-popup-table tr td:last-child {text-align:center;}
