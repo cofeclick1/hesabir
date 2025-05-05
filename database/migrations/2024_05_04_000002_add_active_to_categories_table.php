@@ -14,9 +14,11 @@ class AddActiveToCategoriesTable extends Migration
     }
 
     public function down()
-    {
-        Schema::table('categories', function (Blueprint $table) {
+{
+    Schema::table('categories', function (Blueprint $table) {
+        if (Schema::hasColumn('categories', 'active')) {
             $table->dropColumn('active');
-        });
-    }
+        }
+    });
+}
 }

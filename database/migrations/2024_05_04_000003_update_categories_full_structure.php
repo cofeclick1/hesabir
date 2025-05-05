@@ -47,20 +47,29 @@ class UpdateCategoriesFullStructure extends Migration
     }
 
     public function down()
-    {
-        Schema::table('categories', function (Blueprint $table) {
-            // حذف فیلدها در صورت نیاز
-            if (Schema::hasColumn('categories', 'code')) $table->dropColumn('code');
-            if (Schema::hasColumn('categories', 'type')) $table->dropColumn('type');
-            if (Schema::hasColumn('categories', 'parent_id')) $table->dropColumn('parent_id');
-            if (Schema::hasColumn('categories', 'description')) $table->dropColumn('description');
-            if (Schema::hasColumn('categories', 'image')) $table->dropColumn('image');
-            if (Schema::hasColumn('categories', 'active')) $table->dropColumn('active');
-            if (Schema::hasColumn('categories', 'person_type')) $table->dropColumn('person_type');
-            if (Schema::hasColumn('categories', 'unit')) $table->dropColumn('unit');
-            if (Schema::hasColumn('categories', 'tax')) $table->dropColumn('tax');
-            if (Schema::hasColumn('categories', 'service_type')) $table->dropColumn('service_type');
-            if (Schema::hasColumn('categories', 'base_rate')) $table->dropColumn('base_rate');
-        });
-    }
+{
+    Schema::table('categories', function (Blueprint $table) {
+        // ابتدا foreign key را حذف کن (اگر وجود دارد)
+        if (Schema::hasColumn('categories', 'parent_id')) {
+            // اگر کلید خارجی وجود دارد، حذف شود
+            try {
+                $table->dropForeign(['parent_id']);
+            } catch (\Exception $e) {
+                // اگر کلید خارجی نبود، خطا نده
+            }
+            // حالا ستون را حذف کن
+            $table->dropColumn('parent_id');
+        }
+        if (Schema::hasColumn('categories', 'code')) $table->dropColumn('code');
+        if (Schema::hasColumn('categories', 'type')) $table->dropColumn('type');
+        if (Schema::hasColumn('categories', 'description')) $table->dropColumn('description');
+        if (Schema::hasColumn('categories', 'image')) $table->dropColumn('image');
+        if (Schema::hasColumn('categories', 'active')) $table->dropColumn('active');
+        if (Schema::hasColumn('categories', 'person_type')) $table->dropColumn('person_type');
+        if (Schema::hasColumn('categories', 'unit')) $table->dropColumn('unit');
+        if (Schema::hasColumn('categories', 'tax')) $table->dropColumn('tax');
+        if (Schema::hasColumn('categories', 'service_type')) $table->dropColumn('service_type');
+        if (Schema::hasColumn('categories', 'base_rate')) $table->dropColumn('base_rate');
+    });
+}
 }
