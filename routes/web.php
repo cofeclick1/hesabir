@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryOptionController;
+use App\Http\Controllers\PersonTypeController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -45,5 +47,10 @@ Route::post('/category-options', [CategoryOptionController::class, 'store']);
 Route::put('/category-options/{id}', [CategoryOptionController::class, 'update']);
 Route::delete('/category-options/{id}', [CategoryOptionController::class, 'destroy']);
 
+
+Route::get('/person-types', [PersonTypeController::class, 'index']);
+Route::post('/person-types', [PersonTypeController::class, 'store']);
+Route::put('/person-types/{personType}', [PersonTypeController::class, 'update']);
+Route::delete('/person-types/{personType}', [PersonTypeController::class, 'destroy']);
 
 require __DIR__.'/auth.php';

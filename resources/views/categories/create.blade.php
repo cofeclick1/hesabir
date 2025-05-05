@@ -25,7 +25,19 @@
 .cat-section { display: none; }
 .cat-section.active { display: block; }
 .form-switch { display: flex; align-items: center; gap: .5rem; }
-.form-switch input[type="checkbox"] { width: 1.4em; height: 1.4em; }
+
+/* --- CUSTOM FOR CODE FIELD --- */
+.code-switch-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.code-switch-box label {
+    margin-bottom: 0;
+    font-size: 0.98rem;
+    font-weight: 500;
+}
 </style>
 @endsection
 
@@ -68,8 +80,13 @@
                     <input type="text" name="title" class="form-control" required maxlength="100">
                 </div>
                 <div class="mb-3">
+                    <div class="code-switch-box">
+                        <label for="person-code-switch">کد خودکار:</label>
+                        <input type="checkbox" id="person-code-switch" checked>
+                        <span style="font-size:0.92rem;">(در حالت فعال، کد غیرقابل ویرایش و اتوماتیک است)</span>
+                    </div>
                     <label class="form-label">کد دسته‌بندی <span class="text-danger">*</span></label>
-                    <input type="text" name="code" class="form-control" required maxlength="20">
+                    <input type="text" name="code" id="person-code-input" class="form-control" required maxlength="20" readonly value="per-001">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">دسته والد</label>
@@ -80,8 +97,13 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3 d-flex justify-content-between align-items-center">
+                    <label class="form-label mb-0">نوع شخص</label>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="manage-person-type-btn">
+                        مدیریت نوع شخص
+                    </button>
+                </div>
                 <div class="mb-3">
-                    <label class="form-label">نوع شخص</label>
                     <select name="person_type" class="form-select">
                         <option value="">انتخاب کنید</option>
                         <option>مشتری</option>
@@ -124,8 +146,13 @@
                     <input type="text" name="title" class="form-control" required maxlength="100">
                 </div>
                 <div class="mb-3">
+                    <div class="code-switch-box">
+                        <label for="product-code-switch">کد خودکار:</label>
+                        <input type="checkbox" id="product-code-switch" checked>
+                        <span style="font-size:0.92rem;">(در حالت فعال، کد غیرقابل ویرایش و اتوماتیک است)</span>
+                    </div>
                     <label class="form-label">کد دسته‌بندی <span class="text-danger">*</span></label>
-                    <input type="text" name="code" class="form-control" required maxlength="20">
+                    <input type="text" name="code" id="product-code-input" class="form-control" required maxlength="20" readonly value="cat-pr1001">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">دسته والد</label>
@@ -136,9 +163,14 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3 d-flex justify-content-between align-items-center">
+                    <label class="form-label mb-0">واحد اصلی</label>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="manage-unit-btn">
+                        مدیریت واحد اصلی
+                    </button>
+                </div>
                 <div class="mb-3">
-                    <label class="form-label">واحد اصلی <span class="text-danger">*</span></label>
-                    <select name="unit" class="form-select" required>
+                    <select name="unit" class="form-select">
                         <option value="">انتخاب کنید</option>
                         <option>عدد</option>
                         <option>کیلوگرم</option>
@@ -148,10 +180,7 @@
                         <option>سایر</option>
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">حساب معین مرتبط <span class="text-danger">*</span></label>
-                    <input type="text" name="account_code" class="form-control" required maxlength="30" placeholder="مثلاً 1101">
-                </div>
+                {{-- حذف حساب معین مرتبط --}}
                 <div class="mb-3">
                     <label class="form-label">مالیات پیش‌فرض (%)</label>
                     <input type="number" name="tax" class="form-control" min="0" max="100" step="0.1">
@@ -189,8 +218,13 @@
                     <input type="text" name="title" class="form-control" required maxlength="100">
                 </div>
                 <div class="mb-3">
+                    <div class="code-switch-box">
+                        <label for="service-code-switch">کد خودکار:</label>
+                        <input type="checkbox" id="service-code-switch" checked>
+                        <span style="font-size:0.92rem;">(در حالت فعال، کد غیرقابل ویرایش و اتوماتیک است)</span>
+                    </div>
                     <label class="form-label">کد دسته‌بندی <span class="text-danger">*</span></label>
-                    <input type="text" name="code" class="form-control" required maxlength="20">
+                    <input type="text" name="code" id="service-code-input" class="form-control" required maxlength="20" readonly value="cat-ser1001">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">دسته والد</label>
@@ -201,8 +235,13 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3 d-flex justify-content-between align-items-center">
+                    <label class="form-label mb-0">نوع خدمات</label>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="manage-service-type-btn">
+                        مدیریت نوع خدمات
+                    </button>
+                </div>
                 <div class="mb-3">
-                    <label class="form-label">نوع خدمت</label>
                     <select name="service_type" class="form-select">
                         <option value="">انتخاب کنید</option>
                         <option>مشاوره</option>
@@ -216,10 +255,7 @@
                     <label class="form-label">نرخ پایه خدمت (تومان)</label>
                     <input type="number" name="base_rate" class="form-control" min="0" step="1000">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">حساب معین مرتبط <span class="text-danger">*</span></label>
-                    <input type="text" name="account_code" class="form-control" required maxlength="30">
-                </div>
+                {{-- حذف حساب معین مرتبط --}}
                 <div class="mb-3">
                     <label class="form-label">مالیات پیش‌فرض (%)</label>
                     <input type="number" name="tax" class="form-control" min="0" max="100" step="0.1">
@@ -239,6 +275,10 @@
                 </div>
             </form>
         </div>
+        {{-- MODALS (پاپ‌آپ) --}}
+        @include('categories.partials.person_type_modal')
+        @include('categories.partials.unit_modal')
+        @include('categories.partials.service_type_modal')
     </div>
 </div>
 @endsection
@@ -276,5 +316,36 @@ previewImg('service-cat-img-input', 'service-cat-img-preview');
         this.querySelector('input[type="file"]').click();
     };
 });
+
+// --- کد دسته‌بندی خودکار و سوییچ ---
+function toggleCodeSwitch(codeInputId, codeSwitchId, defaultValue) {
+    const input = document.getElementById(codeInputId);
+    const sw = document.getElementById(codeSwitchId);
+    sw.addEventListener('change', function() {
+        if (this.checked) {
+            input.value = defaultValue;
+            input.setAttribute('readonly', true);
+        } else {
+            input.removeAttribute('readonly');
+        }
+    });
+}
+toggleCodeSwitch('person-code-input', 'person-code-switch', 'per-001');
+toggleCodeSwitch('product-code-input', 'product-code-switch', 'cat-pr1001');
+toggleCodeSwitch('service-code-input', 'service-code-switch', 'cat-ser1001');
+
+// --- مدیریت پاپ‌آپ‌ها ---
+document.getElementById('manage-person-type-btn').onclick = function() {
+    var myModal = new bootstrap.Modal(document.getElementById('personTypeModal'));
+    myModal.show();
+};
+document.getElementById('manage-unit-btn').onclick = function() {
+    var myModal = new bootstrap.Modal(document.getElementById('unitModal'));
+    myModal.show();
+};
+document.getElementById('manage-service-type-btn').onclick = function() {
+    var myModal = new bootstrap.Modal(document.getElementById('serviceTypeModal'));
+    myModal.show();
+};
 </script>
 @endsection
