@@ -11,9 +11,11 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('code')->unique();
+            $table->string('code', 32)->unique();
+            $table->string('type', 20)->default('person');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('image')->nullable();
+            $table->boolean('active')->default(true);
             $table->text('description')->nullable();
             $table->timestamps();
 
