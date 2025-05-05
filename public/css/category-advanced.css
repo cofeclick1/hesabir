@@ -1,41 +1,122 @@
-.switch-cat-type {
-    display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+/* مدال‌ها و لیست‌های مدیریتی */
+.modal-content {
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(90, 187, 255, 0.08);
+    border: none;
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
 }
-.switch-cat-type label {
-    font-weight: bold; font-size: 1.05rem;
-    padding: .5rem 1.3rem; border-radius: 30px;
-    background: #f3f7fa; cursor: pointer; transition: background .16s;
-    border: 2px solid #cbd5e1;
-    display: flex; align-items: center; gap: .5rem;
+.modal-header {
+    background: linear-gradient(90deg, #5ee7df 0%, #b490ca 100%);
+    border-radius: 16px 16px 0 0;
+    border-bottom: 1.5px solid #e3e3e3;
+    color: #fff;
 }
-.switch-cat-type input[type="radio"]:checked + span {
-    color: #1565c0;
+.modal-title {
     font-weight: bold;
-    background: #e3f2fd;
-    border-color: #1565c0;
+    font-size: 1.1rem;
+    letter-spacing: .02em;
 }
-.switch-cat-type input[type="radio"] { display: none; }
-.cat-section { display: none; }
-.cat-section.active { display: block; }
-.form-switch { display: flex; align-items: center; gap: .5rem; }
-.form-switch input[type="checkbox"] { width: 1.4em; height: 1.4em; }
-.code-switch {display:flex;align-items:center;gap:6px;margin-bottom:10px;}
-.code-switch label {font-size:.98rem;}
-.manage-btn {margin-right: 8px; font-size: 14px;}
-.manage-btn i {margin-left: 4px;}
-/* --- Popup Modal --- */
-.modal-popup-bg {
-    background: rgba(0,0,0,0.33); position: fixed; inset: 0; z-index: 9999;
-    display: flex; align-items: center; justify-content: center;
+
+.list-group-item {
+    border: 1.2px solid #e5e7eb;
+    border-radius: 8px !important;
+    margin-bottom: 7px;
+    font-size: 1rem;
+    background: linear-gradient(90deg, #fffbe7 85%, #e0c3fc 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #6a4ca7;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    font-weight: 500;
 }
-.modal-popup {
-    background: #fff; border-radius: 16px; padding: 1.5rem; min-width: 340px; box-shadow: 0 8px 24px rgba(30,41,59,.13);
-    position: relative; max-width: 95vw;
+
+.input-group {
+    gap: 8px;
 }
-.modal-popup .close-btn {
-    position: absolute; top: 10px; left: 20px; background: none; border: none; font-size: 1.6rem; color: #999;
+
+input.form-control, textarea.form-control, select.form-select {
+    border-radius: 8px;
 }
-.table-responsive {max-height: 260px;overflow:auto;}
+input.form-control:focus, textarea.form-control:focus, select.form-select:focus {
+    border-color: #6a4ca7;
+    box-shadow: 0 0 2px #e0c3fc;
+}
+
+/* دکمه‌های مدال */
+.list-group-item .btn {
+    padding: 3px 12px;
+    font-size: 0.97rem;
+    border-radius: 7px;
+    margin-right: 2px;
+}
+
+.list-group-item .btn-warning {
+    background: #ffd700;
+    color: #7c5800;
+    border: none;
+}
+.list-group-item .btn-warning:hover {
+    background: #ffe980;
+    color: #b38d00;
+}
+.list-group-item .btn-danger {
+    background: #f857a6;
+    background: linear-gradient(90deg, #ff5858 0%, #f857a6 100%);
+    color: #fff;
+    border: none;
+}
+.list-group-item .btn-danger:hover {
+    background: #ee0979;
+    color: #fff;
+}
+
+.input-group button.btn-success {
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+    color: #204d36;
+    font-weight: bold;
+    border: none;
+}
+.input-group button.btn-success:hover {
+    background: linear-gradient(90deg, #43e97b 0%, #38d9f9 100%);
+    color: #0e2d21;
+}
+
+.modal-footer .btn {
+    min-width: 100px;
+}
+
+.table-responsive {
+    max-height: 260px;
+    overflow: auto;
+}
 .modal-popup-table th, .modal-popup-table td {padding: 7px 10px; text-align: right;}
 .modal-popup-table th {background: #f8fafc;}
 .modal-popup-table tr td:last-child {text-align:center;}
+
+/* اسکرولبار زیبا */
+::-webkit-scrollbar {
+    width: 8px;
+    background: #ffe3c0;
+}
+::-webkit-scrollbar-thumb {
+    background: #fd7e14;
+    border-radius: 12px;
+}
+
+@media (max-width: 650px) {
+    .modal-dialog {
+        max-width: 97vw !important;
+        margin: 1.75rem auto;
+    }
+    .modal-content {
+        border-radius: 8px;
+    }
+    .list-group-item {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+}

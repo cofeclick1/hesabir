@@ -11,22 +11,23 @@ use App\Models\PersonType;
 class CategoryController extends Controller
 {
     public function create()
-    {
-        $personCategories = Category::where('type', 'person')->orderBy('title')->get(['id', 'title']);
-        $productCategories = Category::where('type', 'product')->orderBy('title')->get(['id', 'title']);
-        $serviceCategories = Category::where('type', 'service')->orderBy('title')->get(['id', 'title']);
+{
+    $personTypes = PersonType::all();
+    $units = ['عدد', 'کیلوگرم', 'متر', 'بسته']; // نمونه داده، یا از جدول واحدها
+$serviceTypes = [
+    (object)['id'=>1, 'title' => 'مشاوره'],
+    (object)['id'=>2, 'title' => 'آموزش'],
+    (object)['id'=>3, 'title' => 'پشتیبانی'],
+];
+    $personCategories = Category::where('type', 'person')->get();
+    $productCategories = Category::where('type', 'product')->get();
+    $serviceCategories = Category::where('type', 'service')->get();
 
-        $personTypes = PersonType::all();
-        $units = ['عدد', 'کیلوگرم', 'متر', 'لیتر', 'بسته', 'سایر']; // این را هم اگر بعداً از دیتابیس آوردی، جایگزین کن
-
-        return view('categories.create', compact(
-            'personCategories',
-            'productCategories',
-            'serviceCategories',
-            'personTypes',
-            'units'
-        ));
-    }
+    return view('categories.create', compact(
+        'personTypes', 'units', 'serviceTypes',
+        'personCategories', 'productCategories', 'serviceCategories'
+    ));
+}
 
     public function store(Request $request)
     {

@@ -19,6 +19,7 @@
         body { background: #f9fafb; }
     </style>
     @yield('head')
+    @stack('styles')
 </head>
 <body>
     @include('layouts.sidebar')
